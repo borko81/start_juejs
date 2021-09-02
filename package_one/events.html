@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Document</title>
+</head>
+<body>
+
+    <div id="app" class="container">
+
+        <p>The age is {{ age }}</p>
+
+        <div>
+            <button class="btn btn-primary" v-on:click.once="increase">Increase</button>
+            <button class="btn btn-primary" v-on:click.once="decrease">Decrese</button>
+            <hr>
+            <a v-on:click="click" v-bind:href="html">Google</a>
+        </div>
+    </div>
+
+<script>
+new Vue({
+    el: '#app',
+    data: {
+        name: 'Borko',
+        age: 40,
+        html: 'https://www.google.bg'
+    }, 
+    methods: {
+        increase: function() {
+            this.age++
+        },
+        decrease: function() {
+            this.age--
+        },
+        click: function() {
+            if(confirm("Are yous sure to leave the page ?")) {
+                this.html = 'https://www.google.bg'
+            } else {
+                this.html = ''
+            }
+        }
+    }
+});
+</script>
+
+</body>
+</html>

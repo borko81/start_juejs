@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Document</title>
+    <style>
+        html,
+        body {
+            margin: 5px;
+            background-color: skyblue;
+        }
+    </style>
+</head>
+
+<body>
+    <di id="app">
+        <p>{{ message}}</p>
+        <input type="text" v-model="message">
+        <span v-if="seen">You seen already this page</span>
+        <span v-else="seen">You cannot see me</span>
+        <hr>
+        <ul>
+            <li v-for="todo in todos">{{ todo.text }}</li>
+        </ul>
+        <h1>Keyboard events</h1>
+        <button v-on:click='increaseAge'>Increase age</button>
+        <label for="name">Name</label>
+        <input type="text" name='name' v-on:keyup="logName" id='name' v-model='name'>
+        <span>{{ name }}</span>
+        <label for="age">Age</label>
+        <input type="text" name='age' v-on:keyup="logAge" id='age' v-model='age'>
+        <br /><span>{{ age }}</span>
+    </di>
+
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                message: 'Scan for vue',
+                seen: true,
+                todos: [
+                    { text: 'HTML Tutorial' },
+                    { text: 'CSS Tutorial' },
+                    { text: 'JavaScript Tutorial' },
+                    { text: 'AngularJS Tutorial' },
+                    { text: 'Vue.js Tutorial' }
+                ],
+                name: '',
+                age: '',
+            },
+            methods: {
+                logName: function () {
+                    // Check if name is corect
+                    console.log(this.name)
+                    if (this.name === 'borko') {
+                        alert('Success')
+                    }
+                },
+                logAge: function () {
+                    console.log('Enter age')
+                },
+                increaseAge: function () {
+                    // Incrase age only if age already declared from input
+                    if (!this.age) {
+                        alert('Age not declared')
+                        return this.age
+                    }
+                    return this.age++;
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>
