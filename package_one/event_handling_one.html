@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Document</title>
+</head>
+<body>
+
+    <div id="app" class="container">
+
+        <h1 v-text="new Date()"></h1>
+        <input type="text" v-model="text">
+        <button v-on:click="message">Show message</button>
+        <button v-on:click="incrementClick">Click me</button>
+        <p>The button above was clicked {{ counter }} time</p>
+
+        <hr>
+
+        <h3>All tasks</h3>
+        <ul>
+            <li v-for="task in tasks" v-text="task.name"></li>
+        </ul>
+
+        <h3>Uncompleted tasks</h3>
+        <ul>
+            <li v-for="task in incompletedTasks" v-text="task.name"></li>
+        </ul>
+
+    </div>
+
+<script>
+new Vue({
+    el: '#app',
+    data: {
+        counter: 0,
+        text: '',
+        tasks: [
+            {'name': 'Task one', 'finished': false},
+            {'name': 'Task two', 'finished': true},
+            {'name': 'Task three', 'finished': false},
+            {'name': 'Task four', 'finished': true},
+        ]
+    }, 
+    methods: {
+        incrementClick () {
+            this.counter++;
+        }, 
+        message () {
+            alert('The name is ' + this.text)
+            this.text = ''
+        }
+    },
+    computed: { 
+        incompletedTasks () {
+            return this.tasks.filter(task => !task.finished)
+        }
+    }
+});
+</script>
+</body>
+</html>
