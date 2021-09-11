@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Document</title>
+    <style>
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        ul li {
+            display: inline-block;
+            margin-left: 2px;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="app" class="container">
+
+        <input type="text" v-model='message'>
+        <p>{{ message }}</p>
+
+        <p>Current status is {{ mySatus(value) }}</p>
+
+        <label for=""><input type="radio" v-model='value' value='1'>One</label>
+        <label for=""><input type="radio" v-model='value' value='2'>Two</label>
+        <label><input type="radio" v-model="value" value="3"> Three</label>
+
+        <div v-html='myHTML'></div>
+
+        <ul>
+            <li v-for="n in filteredNumbers()">{{ n }}</li>
+        </ul>
+
+    </div>
+
+<script>
+new Vue({
+    el: '#app',
+    data: {
+        message: '',
+        value: '1',
+        myHTML: `<b>This is bold text</b>`,
+        numbers: [1, -2, 5, -100, 3],
+
+    }, 
+    methods: {
+        mySatus (value) {
+            const status = ({
+                1: 'One',
+                2: 'Two',
+                3: 'Three'
+            })[value]
+            return status || '';
+        },
+
+        filteredNumbers() {
+            return this.numbers.filter((n) => n >= 0);
+        }
+    },
+    computed: { 
+    }
+
+});
+</script>
+</body>
+</html>
